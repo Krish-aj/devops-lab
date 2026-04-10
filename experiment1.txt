@@ -1,0 +1,20 @@
+//installing maven and gradle on ubuntu
+//step 1 
+sudo apt update 
+  or
+sudo apt upgrade
+
+//step 2 (install java)
+
+java -version 
+sudo apt install openjdk-11-jdk
+
+//step 3 (install maven)
+
+sudo apt install maven
+mvn -version
+
+// Part B (intall gradle)
+
+sudo apt install gradle
+gradle -v
