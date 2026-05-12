@@ -1,0 +1,25 @@
+Experiment 6: Maven vs Gradle Build Comparison (Enhanced with Evidence)
+Problem Statement:
+Build the same Java application using Maven and Gradle. Capture output folder names and compare in 3–5 lines with proof of successful builds.
+Prerequisites:
+•	Maven project available
+•	Gradle project available
+Procedure:
+1.	Run mvn clean package and verify jar under target/
+2.	Run gradle clean build and verify jar under build/libs/
+3.	Write short comparison of build folders and command style
+Solution / Files / Commands:
+Commands:
+# Maven
+mvn clean package
+ls -l target/
+
+# Gradle
+gradle clean build
+ls -l build/libs/
+Sample Observation:
+Maven stores build outputs in target/ while Gradle stores them in build/.
+Maven uses pom.xml (XML) for configuration, Gradle uses build.gradle (Groovy/Kotlin).
+Gradle allows easier custom automation through tasks, Maven follows strict lifecycle phases.
+Expected Output / Verification:
+Both builds succeed and comparison notes submitted.
