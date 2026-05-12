@@ -1,0 +1,27 @@
+Experiment 8: Jenkins Pipeline – Archive Jar Artifact (Enhanced)
+Problem Statement:
+Build a Maven project using Jenkins pipeline and archive the jar artifact so it can be downloaded from Jenkins.
+Prerequisites:
+•	Jenkins pipeline job access
+•	Maven project produces jar in target/
+Procedure:
+1.	Build the project with Maven inside pipeline
+2.	Archive target/*.jar after success
+3.	Verify artifact appears in Jenkins build page
+Solution / Files / Commands:
+Jenkinsfile:
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps { sh 'mvn clean package' }
+        }
+    }
+    post {
+        success {
+            archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+        }
+    }
+}
+Expected Output / Verification:
+Artifacts section in Jenkins build shows archived jar.
