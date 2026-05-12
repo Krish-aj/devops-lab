@@ -1,0 +1,34 @@
+Experiment 12: Azure DevOps YAML Pipeline – Build + Publish Test Results (Enhanced)
+Problem Statement:
+Create an Azure DevOps YAML pipeline that builds a Maven project and publishes unit test results. Commit YAML to repo and run pipeline.
+Prerequisites:
+•	Azure DevOps account + project
+•	Repo connected
+•	Maven project with tests
+Procedure:
+1.	Create azure-pipelines.yml in repository root
+2.	Configure trigger for main
+3.	Run Maven build and tests
+4.	Publish test results
+5.	Verify test results in pipeline run
+Solution / Files / Commands:
+azure-pipelines.yml:
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    goals: 'clean test package'
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFiles: '**/target/surefire-reports/TEST-*.xml'
+    mergeTestResults: true
+    testRunTitle: 'Maven Unit Test Results'
+Expected Output / Verification:
+Pipeline succeeds and test results appear in Azure DevOps build run
