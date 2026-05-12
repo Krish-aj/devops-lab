@@ -1,0 +1,35 @@
+Experiment 7: Jenkins Declarative Pipeline CI + Publish Test Report (Enhanced)
+Problem Statement:
+Create a Jenkins pipeline with stages Checkout → Build → Test and publish JUnit test reports so results are visible in Jenkins.
+Prerequisites:
+•	Jenkins accessible
+•	Git repo with Maven project + tests
+•	Jenkins agent has Java+Maven
+Procedure:
+1.	Create Jenkinsfile in project root
+2.	Create Jenkins Pipeline job using SCM
+3.	Run pipeline and verify stages
+4.	Verify test results are published in Jenkins
+Solution / Files / Commands:
+Jenkinsfile:
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps { git 'https://github.com/<your-repo>.git' }
+        }
+        stage('Build') {
+            steps { sh 'mvn clean package' }
+        }
+        stage('Test') {
+            steps { sh 'mvn test' }
+        }
+    }
+    post {
+        always {
+            junit 'target/surefire-reports/*.xml'
+        }
+    }
+}
+Expected Output / Verification:
+Pipeline succeeds and Jenkins displays test reports.
