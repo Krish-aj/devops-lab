@@ -1,0 +1,52 @@
+Experiment 1: Maven Project Creation + Build + Test
+Problem Statement:
+Create a Maven Java project using the standard quickstart archetype. Modify the code to add a simple method and write a JUnit test for it. Execute Maven lifecycle goals to validate compilation, testing, and packaging to a JAR.
+Prerequisites:
+•	Java 11+ installed
+•	Maven installed
+•	Internet access for downloading dependencies
+Procedure:
+1.	Generate Maven project using quickstart archetype
+2.	Modify App.java to add a method add(a,b) and print the result in main()
+3.	Modify AppTest.java to validate the add(a,b) method using JUnit
+4.	Run mvn test and confirm test passes
+5.	Run mvn package and confirm jar is generated in target/
+Solution / Files / Commands:
+Commands:
+mvn archetype:generate -DgroupId=com.exam -DartifactId=maven-demo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+cd maven-demo
+mvn test
+mvn package
+ls -l target/
+src/main/java/com/exam/App.java:
+package com.exam;
+
+public class App {
+
+    public static int add(int a, int b) {
+        return a + b;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Sum = " + add(10, 20));
+    }
+}
+src/test/java/com/exam/AppTest.java:
+package com.exam;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+public class AppTest {
+
+    @Test
+    public void testAdd() {
+        Assert.assertEquals(30, App.add(10, 20));
+    }
+}
+Expected Output / Verification:
+mvn test shows Tests run: 1, Failures: 0 and BUILD SUCCESS. mvn package creates target/maven-demo-1.0-SNAPSHOT.jar.
+
+//add this in pom.xml
+<maven.compiler.source>11</maven.compiler.source>
+<maven.compiler.target>11</maven.compiler.target>
