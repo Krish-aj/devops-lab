@@ -1,0 +1,32 @@
+Experiment 3: Maven Profiles (dev/prod) + Property Output 
+Problem Statement:
+Configure two Maven profiles (dev and prod) in pom.xml. Each profile must set a different property value. Print that property from Java code to validate profile switching.
+Prerequisites:
+•	Maven project available
+Procedure:
+1.	Add profiles dev and prod in pom.xml with env.name property
+2.	Update App.java to print property env.name
+3.	Run Maven with -Pdev and -Pprod and capture different output
+Solution / Files / Commands:
+pom.xml (profiles):
+<profiles>
+  <profile>
+    <id>dev</id>
+    <properties>
+      <env.name>DEV</env.name>
+    </properties>
+  </profile>
+  <profile>
+    <id>prod</id>
+    <properties>
+      <env.name>PROD</env.name>
+    </properties>
+  </profile>
+</profiles>
+App.java (print statement):
+System.out.println("Environment: " + System.getProperty("env.name"));
+Run Commands:
+mvn -Pdev test
+mvn -Pprod test
+Expected Output / Verification:
+Output differs: Environment: DEV and Environment: PROD.
