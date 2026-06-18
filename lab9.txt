@@ -1,0 +1,34 @@
+Experiment 9: Jenkins Parameterized Pipeline – Branch Build + Test 
+Problem Statement:
+Create a Jenkins pipeline that accepts BRANCH_NAME parameter, checks out that branch, builds and runs tests.
+Prerequisites:
+•	Git repo with at least 2 branches
+•	Jenkins can access repo
+Procedure:
+1.	Add BRANCH_NAME input parameter
+2.	Checkout branch dynamically
+3.	Run build and tests
+4.	Execute pipeline twice using two different branches
+Solution / Files / Commands:
+Jenkinsfile:
+pipeline {
+    agent any
+    parameters {
+        string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Git branch to build')
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: params.BRANCH_NAME, url: 'https://github.com/<your-repo>.git'
+            }
+        }
+        stage('Build') {
+            steps { sh 'mvn clean package' }
+        }
+        stage('Test') {
+            steps { sh 'mvn test' }
+        }
+    }
+}
+Expected Output / Verification:
+Two successful pipelines run for different BRANCH_NAME values.
