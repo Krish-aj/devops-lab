@@ -1,0 +1,52 @@
+Experiment 2: Maven Dependency + JSON Conversion 
+Problem Statement:
+Add an external dependency (Gson) in Maven and write a Java program that converts a Java object to JSON. Run it using Maven exec plugin to ensure dependency resolution and application execution through Maven.
+Prerequisites:
+•	Any Maven project (from Exp-1 can be reused)
+•	Internet access
+Procedure:
+1.	Add Gson dependency to pom.xml
+2.	Add exec-maven-plugin to pom.xml (so main class can run from Maven)
+3.	Create a Student class and convert it to JSON using Gson
+4.	Run using mvn exec:java and capture JSON output
+Solution / Files / Commands:
+pom.xml (dependency):
+<dependency>
+  <groupId>com.google.code.gson</groupId>
+  <artifactId>gson</artifactId>
+  <version>2.10.1</version>
+</dependency>
+pom.xml (exec plugin):
+<plugin>
+  <groupId>org.codehaus.mojo</groupId>
+  <artifactId>exec-maven-plugin</artifactId>
+  <version>3.1.0</version>
+  <configuration>
+    <mainClass>com.exam.App</mainClass>
+  </configuration>
+</plugin>
+src/main/java/com/exam/App.java:
+package com.exam;
+
+import com.google.gson.Gson;
+
+class Student {
+    String name;
+    int age;
+    Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+public class App {
+    public static void main(String[] args) {
+        Gson gson = new Gson();
+        Student s = new Student("Ravi", 21);
+        System.out.println(gson.toJson(s));
+    }
+}
+Run Commands:
+mvn clean compile exec:java
+Expected Output / Verification:
+Console prints JSON like: {"name":"Ravi","age":21} and BUILD SUCCESS.
