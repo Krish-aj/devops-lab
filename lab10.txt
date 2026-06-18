@@ -1,0 +1,21 @@
+Experiment 10: Ansible Inventory + Ad-hoc Commands 
+Problem Statement:
+Create an Ansible inventory and run ad-hoc automation commands to validate connectivity and collect system information (uptime and hostname).
+Prerequisites:
+•	Ansible installed
+•	Target host reachable OR use localhost
+Procedure:
+1.	Create inventory.ini with group servers
+2.	Run ping module
+3.	Run uptime command
+4.	Run hostname command
+Solution / Files / Commands:
+inventory.ini:
+[servers]
+localhost ansible_connection=local
+Commands:
+ansible -i inventory.ini servers -m ping
+ansible -i inventory.ini servers -a "uptime"
+ansible -i inventory.ini servers -a "hostname" 
+Expected Output / Verification:
+Ping returns SUCCESS and uptime/hostname output shown.
