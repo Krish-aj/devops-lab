@@ -1,0 +1,38 @@
+Experiment 4: Gradle Java App + Unit Test 
+Problem Statement:
+Create a Gradle Java application, add a method and write a unit test, then build and generate jar using Gradle lifecycle commands.
+Prerequisites:
+•	Java installed
+•	Gradle installed
+Procedure:
+1.	Initialize a Gradle java-application project
+2.	Add method add(a,b) in App class
+3.	Add JUnit test to validate add method
+4.	Run gradle test and gradle build
+5.	Verify jar generated in build/libs
+Solution / Files / Commands:
+Commands:
+mkdir gradle-demo && cd gradle-demo
+gradle init --type java-application
+gradle test
+gradle build
+ls -l build/libs
+App.java (example):
+public class App {
+    public static int add(int a, int b) { return a + b; }
+    public static void main(String[] args) {
+        System.out.println("Sum = " + add(5, 6));
+    }
+}
+AppTest.java (example):
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class AppTest {
+    @Test
+    public void testAdd() {
+        assertEquals(11, App.add(5, 6));
+    }  
+}
+Expected Output / Verification:
+gradle test passes, gradle build successful, jar created under build/libs.
