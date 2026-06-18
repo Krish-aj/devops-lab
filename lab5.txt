@@ -1,0 +1,23 @@
+Experiment 5: Gradle Custom Task + Build Dependency 
+Problem Statement:
+Create a custom Gradle task that prints project details and automatically runs before build. Demonstrates task automation in Gradle.
+Prerequisites:
+•	Gradle Java project created
+Procedure:
+1.	Add custom task printInfo in build.gradle
+2.	Configure build task to depend on printInfo
+3.	Run gradle build and verify printInfo executes before build
+Solution / Files / Commands:
+build.gradle:
+task printInfo {
+    doLast {
+        println "Project Name: " + project.name
+        println "Version: " + project.version
+    }
+}
+
+build.dependsOn printInfo
+Run Commands:
+gradle build
+Expected Output / Verification:
+Console shows Project Name and Version before build and build completes successfully.
